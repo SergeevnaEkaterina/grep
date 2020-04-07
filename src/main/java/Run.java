@@ -34,7 +34,7 @@ public class Run {
             parser.parseArgument(args);
         } catch (CmdLineException e) {
             System.err.println(e.getMessage());
-            System.err.println("java -jar grep.jar -v -i -r word inputName.txt");
+            System.err.println("java -jar grep.jar [-v] [-i] -[r] word inputName.txt");
             parser.printUsage(System.err);
             return;
         }
