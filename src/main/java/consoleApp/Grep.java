@@ -45,26 +45,26 @@ public void logics(boolean filtrationCondition,boolean ignoreWordRegister, Patte
                    if (matcher.find()==false) System.out.println(s);
                }
            }
-           if(regex !=null && ignoreWordRegister =true && filtrationCondition==1) { //all found
+           if(regex !=null && ignoreWordRegister =true && filtrationCondition=true) { //all found
                while((s=br.readLine()) !=null){
                    s = br.readLine().toLowerCase();
                    Matcher matcher = regex.matcher(s);
                    if (matcher.find()==false) System.out.println(s);
                }
            }
-           if(regex ==null && ignoreWordRegister ==0 && filtrationCondition==1) { //only filtrationCondition found
+           if(regex ==null && ignoreWordRegister =false && filtrationCondition=true) { //only filtrationCondition found
                while((s=br.readLine()) !=null){
                    s = br.readLine();
                    if (s.contains(word)==false) System.out.println(s);
                }
            }
-           if(regex ==null && ignoreWordRegister ==1 && filtrationCondition==0) { //only ignoreWordRegister found
+           if(regex ==null && ignoreWordRegister =true && filtrationCondition=false) { //only ignoreWordRegister found
                while((s=br.readLine()) !=null){
                    s = br.readLine().toLowerCase();
                    System.out.println(s);
                }
            }
-           if(regex ==null && ignoreWordRegister ==1 && filtrationCondition==1) { // ignoreWordRegister and filtrationCondition found
+           if(regex ==null && ignoreWordRegister =true && filtrationCondition=true) { // ignoreWordRegister and filtrationCondition found
                while((s=br.readLine()) !=null){
                    s = br.readLine().toLowerCase();
                    if (s.contains(word)==false) System.out.println(s);
