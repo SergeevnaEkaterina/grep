@@ -4,77 +4,98 @@ package consoleApp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Grep {
-    private final String word;
-    private final String inputName ;
-    public Grep (String word, String inputName) {
-        this.word = word;
-        this.inputName = inputName;
+
+    private final boolean filtrationCondition;
+    private final boolean ignoreWordRegister;
+    private Pattern regex;
+    private String word;
+    private final String inputName;
+    public Grep (boolean filtrationCondition,boolean ignoreWordRegister,Pattern regex,String word,String inputName) {
+        this.filtrationCondition = filtrationCondition ;
+        this.ignoreWordRegister = ignoreWordRegister ;
+        this.regex = regex;
+        this.word=word;
+        this.inputName=inputName;
     }
-public void logics(boolean filtrationCondition,boolean ignoreWordRegister, Pattern regex)  {
+    public String foundIgnoreWordRegister(String a){
+        return a.toLowerCase();
+    }
+    public String foundFiltrationCondition(String s,String word){
+        if (!s.contains(word)) return s;
+        return "";
+    }
+    public String foundRegex(Pattern r,String s){
+        Matcher m = r.matcher(s);
+        if (m.find()) return s;
+        return "";
+    }
+public ArrayList<String> logics()  {
        String s;
+    ArrayList<String> f = new ArrayList<>();
        try(BufferedReader br = new BufferedReader(new FileReader(inputName)))
        {
-           if(regex ==null && ignoreWordRegister =false && !filtrationCondition) { //nothing found
+           if(regex ==null && !ignoreWordRegister  && !filtrationCondition) { //nothing found
                while((s=br.readLine()) !=null){
                    s = br.readLine();
-                    System.out.println(s);
+                    f.add(s);
                }
            }
-           if(regex !=null && ignoreWordRegister =false && filtrationCondition=false) { //only regex found
+           if(regex !=null && !ignoreWordRegister && !filtrationCondition) { //only regex found
                    while((s=br.readLine()) !=null){
                        s = br.readLine();
-                       Matcher matcher = regex.matcher(s);
-                       if (matcher.find()) System.out.println(s);
+                       f.add(foundRegex(regex,s));
                    }
            }
-           if(regex !=null && ignoreWordRegister =true && filtrationCondition=false) { //regex and ignoreWordRegister found
-               while((s=br.readLine()) !=null){
-                   s = br.readLine().toLowerCase();
-                   Matcher matcher = regex.matcher(s);
-                   if (matcher.find()) System.out.println(s);
-               }
-           }
-           if(regex !=null && ignoreWordRegister =false && filtrationCondition=true) { //regex and filtrationCondition found
+           if(regex !=null && (ignoreWordRegister) && !filtrationCondition) { //regex and ignoreWordRegister found
                while((s=br.readLine()) !=null){
                    s = br.readLine();
-                   Matcher matcher = regex.matcher(s);
-                   if (matcher.find()==false) System.out.println(s);
+                   //понизить регистр регекса
+                   f.add(foundRegex(regex,foundIgnoreWordRegister(s)));
                }
            }
-           if(regex !=null && ignoreWordRegister =true && filtrationCondition=true) { //all found
-               while((s=br.readLine()) !=null){
-                   s = br.readLine().toLowerCase();
-                   Matcher matcher = regex.matcher(s);
-                   if (matcher.find()==false) System.out.println(s);
-               }
-           }
-           if(regex ==null && ignoreWordRegister =false && filtrationCondition=true) { //only filtrationCondition found
+           if(regex !=null && !ignoreWordRegister && (filtrationCondition)) { //regex and filtrationCondition found
                while((s=br.readLine()) !=null){
                    s = br.readLine();
-                   if (s.contains(word)==false) System.out.println(s);
+                   f.add(foundRegex(regex,s));
                }
            }
-           if(regex ==null && ignoreWordRegister =true && filtrationCondition=false) { //only ignoreWordRegister found
+           if(regex !=null && (ignoreWordRegister) && (filtrationCondition)) { //all found
                while((s=br.readLine()) !=null){
                    s = br.readLine().toLowerCase();
-                   System.out.println(s);
+                   word = word.toLowerCase();
+                   f.add(foundRegex(regex,s));
                }
            }
-           if(regex ==null && ignoreWordRegister =true && filtrationCondition=true) { // ignoreWordRegister and filtrationCondition found
+           if(regex ==null && !ignoreWordRegister && (filtrationCondition)) { //only filtrationCondition found
                while((s=br.readLine()) !=null){
-                   s = br.readLine().toLowerCase();
-                   if (s.contains(word)==false) System.out.println(s);
+                   s = br.readLine();
+                   f.add(foundFiltrationCondition(s,word));
+               }
+           }
+           if(regex ==null && (ignoreWordRegister) && (filtrationCondition)) { //only ignoreWordRegister found
+               while((s=br.readLine()) !=null){
+                   s = br.readLine();
+                   f.add(foundIgnoreWordRegister(s));
+               }
+           }
+           if(regex ==null && (ignoreWordRegister) && (filtrationCondition)) { // ignoreWordRegister and filtrationCondition found
+               while((s=br.readLine()) !=null){
+                   s = br.readLine();
+                   s = foundIgnoreWordRegister(s);
+                   word = foundIgnoreWordRegister(word);
+                   f.add(foundFiltrationCondition(s,word));
                }
                br.close();
            }
-
        }
        catch (IOException exc) {
            System.out.println ( "Ошибка ввода-вывода: "+ exc );
            }
+       return f;
       }
-   }
+}

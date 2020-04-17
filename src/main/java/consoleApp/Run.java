@@ -1,4 +1,7 @@
+package consoleApp;
 import java.util.ArrayList;
+
+import java.util.List;
 import java.util.Scanner;
 
 import consoleApp.Grep;
@@ -18,7 +21,7 @@ public class Run {
     private boolean ignoreWordRegister;
     @Option(name = "-r",metaVar = "FlagR", usage = "Выводятся только строки, содержащие данное регулярное выражение")
     private Pattern regex;
-    @Argument(required = true, metaVar = "InputName", usage = "Имя входного файла")
+    @Argument(required = true, metaVar = "InputName", usage = "Входной файл")
     private String inputName;
     @Argument(required = true, metaVar = "Word", usage = "Выводятся только строки, содержащие данное слово")
     private String word;
@@ -38,8 +41,8 @@ public class Run {
             parser.printUsage(System.err);
             return;
         }
-
-
-
+        Grep g = new Grep(filtrationCondition,ignoreWordRegister,regex,word,inputName);
+        List<String> output = g.logics();
+        
     }
 }
