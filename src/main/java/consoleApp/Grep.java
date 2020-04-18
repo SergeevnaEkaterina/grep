@@ -15,8 +15,8 @@ public class Grep {
         this.filtrationCondition = filtrationCondition ;
         this.ignoreWordRegister = ignoreWordRegister ;
         this.regex = regex;
-        this.word=word;
-        this.inputName=inputName;
+        this.word = word;
+        this.inputName = inputName;
     }
    public ArrayList<String> logics()  {
        String s;
