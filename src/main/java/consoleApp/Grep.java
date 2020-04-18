@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Grep {
@@ -18,11 +19,11 @@ public class Grep {
         this.word = word;
         this.inputName = inputName;
     }
-    public ArrayList<String> logics() throws IOException {
-        String s;
+    public List<String> logics() throws IOException {
         ArrayList<String> f = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader(inputName)))
         {
+            String s;
             if(regex ==null && !ignoreWordRegister  && !filtrationCondition) { //nothing found
                 while((s=br.readLine()) !=null){
                     s = br.readLine();
@@ -34,7 +35,7 @@ public class Grep {
                     s = br.readLine();
                     Pattern p = Pattern.compile(String.valueOf(regex));
                     Matcher m = p.matcher(s);
-                    f.add(s);
+                    if (m.find()) f.add(s);
                 }
             }
             if(regex !=null && (ignoreWordRegister) && !filtrationCondition) { //regex and ignoreWordRegister found
@@ -42,7 +43,7 @@ public class Grep {
                     s = br.readLine();
                     Pattern p = Pattern.compile(String.valueOf(regex), Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(s);
-                    f.add(s);
+                    if (m.find()) f.add(s);
                 }
             }
             if(regex !=null && !ignoreWordRegister && (filtrationCondition)) { //regex and filtrationCondition found

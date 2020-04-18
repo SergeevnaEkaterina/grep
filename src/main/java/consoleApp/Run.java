@@ -1,4 +1,5 @@
 package consoleApp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.kohsuke.args4j.Option;
@@ -19,7 +20,7 @@ public class Run {
     @Argument(required = true, metaVar = "Word", usage = "Выводятся только строки, содержащие данное слово")
     private String word;
     public static void main(String[] args) {
-        new Run ().launch(args);
+        new Run().launch(args);
     }
     private void launch(String[] args) {
         CmdLineParser parser = new CmdLineParser(this);
@@ -36,8 +37,8 @@ public class Run {
             List<String> output = g.logics();
             for (String e : output)
                 System.out.println(e);
-        }catch (IOException e) {
-            System.err.println(e.getMessage());
+        }catch (IOException exc) {
+            System.err.println(exc.getMessage());
         }
     }
 }
