@@ -1,5 +1,4 @@
 package consoleApp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.kohsuke.args4j.Option;
@@ -35,7 +34,7 @@ public class Run {
         Grep g = new Grep(filtrationCondition,ignoreWordRegister,regex,word,inputName);
         try {
             List<String> output = g.logics();
-            for (String e : output)
+            for (String e: output)
                 System.out.println(e);
         }catch (IOException exc) {
             System.err.println(exc.getMessage());
