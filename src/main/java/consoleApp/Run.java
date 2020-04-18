@@ -1,5 +1,4 @@
 package consoleApp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import org.kohsuke.args4j.Option;
@@ -33,8 +32,12 @@ public class Run {
             return;
         }
         Grep g = new Grep(filtrationCondition,ignoreWordRegister,regex,word,inputName);
-        List<String> output = g.logics();
-        for (String e : output)
-            System.out.println(e);
+        try {
+            List<String> output = g.logics();
+            for (String e : output)
+                System.out.println(e);
+        }catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
