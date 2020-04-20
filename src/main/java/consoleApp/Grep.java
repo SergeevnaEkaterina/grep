@@ -33,7 +33,7 @@ public class Grep {
             if(regex !=null && !ignoreWordRegister && !filtrationCondition) { //only regex found
                 while((s=br.readLine()) !=null){
                     s = br.readLine();
-                    Pattern p = Pattern.compile(String.valueOf(regex));
+                    Pattern p = Pattern.compile(word);
                     Matcher m = p.matcher(s);
                     if (m.find()) f.add(s);
                 }
@@ -41,7 +41,7 @@ public class Grep {
             if(regex !=null && (ignoreWordRegister) && !filtrationCondition) { //regex and ignoreWordRegister found
                 while((s=br.readLine()) !=null){
                     s = br.readLine();
-                    Pattern p = Pattern.compile(String.valueOf(regex), Pattern.CASE_INSENSITIVE);
+                    Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(s);
                     if (m.find()) f.add(s);
                 }
@@ -49,7 +49,7 @@ public class Grep {
             if(regex !=null && !ignoreWordRegister && (filtrationCondition)) { //regex and filtrationCondition found
                 while((s=br.readLine()) !=null){
                     s = br.readLine();
-                    Pattern p = Pattern.compile(regex.toString());
+                    Pattern p = Pattern.compile(word);
                     Matcher m = p.matcher(s);
                     if(!m.find()) f.add(s);
                 }
@@ -57,7 +57,7 @@ public class Grep {
             if(regex !=null && (ignoreWordRegister) && (filtrationCondition)) { //all found
                 while((s=br.readLine()) !=null){
                     s = br.readLine().toLowerCase();
-                    Pattern p = Pattern.compile(String.valueOf(regex), Pattern.CASE_INSENSITIVE);
+                    Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(s);
                     if(!m.find()) f.add(s);
                 }
