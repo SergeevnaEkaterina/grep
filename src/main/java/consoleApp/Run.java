@@ -8,13 +8,13 @@ import org.kohsuke.args4j.CmdLineException;
 import java.io.IOException;
 import java.util.regex.Pattern;
 public class Run {
-    @Option(name = "-v",metaVar = "FlagV", usage = "Инвертирует условие фильтрации(выводит только то, что ему не соответствует)")
+    @Option(name = "-v", usage = "Инвертирует условие фильтрации(выводит только то, что ему не соответствует)")
     private boolean filtrationCondition;
-    @Option(name = "-i",metaVar = "FlagI", usage = "Игнорирует регистр слов")
+    @Option(name = "-i", usage = "Игнорирует регистр слов")
     private boolean ignoreWordRegister;
-    @Option(name = "-r",metaVar = "FlagR", usage = "Выводятся только строки, содержащие данное регулярное выражение")
+    @Option(name = "-r", usage = "Выводятся только строки, содержащие данное регулярное выражение")
     private Pattern regex;
-    @Argument(required = true, metaVar = "InputName", usage = "Входной файл")
+    @Argument(required = true, metaVar = "InputName",index = 1, usage = "Входной файл")
     private String inputName;
     @Argument(required = true, metaVar = "Word", usage = "Выводятся только строки, содержащие данное слово")
     private String word;
