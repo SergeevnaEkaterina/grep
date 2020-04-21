@@ -70,14 +70,14 @@ public class Grep {
                 }
                 else if(!filtrationCondition){//regex&ignoreWordRegister
                     while((s=br.readLine()) !=null){
-                        // s = br.readLine();
+                         s = s.toLowerCase();
                         Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
                         Matcher m = p.matcher(s);
                         if (m.find()) f.add(s);
                     }
                 }
                 else{
-                    while((s=br.readLine()) !=null){
+                    while((s=br.readLine()) !=null){//all
                         s = s.toLowerCase();
                         Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
                         Matcher m = p.matcher(s);

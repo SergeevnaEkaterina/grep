@@ -1,16 +1,12 @@
 package consoleApp;
-
+import org.junit.Test;
 import org.junit.Test;
 import consoleApp.Grep;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-
 import static org.junit.Assert.assertEquals;
-
 public class GrepTest {
-
     @Test
     public void logics1() throws IOException {//nothing
         Grep gr = new Grep(false,false,null,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
@@ -85,11 +81,4 @@ public class GrepTest {
         test.add("в россию можно только верить");
         assertEquals(test, gr.logics());
     }
-
-
-
-
-
-
-
 }
