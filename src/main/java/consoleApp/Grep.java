@@ -24,68 +24,76 @@ public class Grep {
         try(BufferedReader br = new BufferedReader(new FileReader(inputName)))
         {
             String s;
-            if(regex ==null && !ignoreWordRegister  && !filtrationCondition) { //nothing found
-                while((s=br.readLine()) !=null){
-                   // s = br.readLine();
-                    f.add(s);
+            if(regex==null){
+                if(!ignoreWordRegister  && !filtrationCondition){//nothing found
+                    while((s=br.readLine()) !=null){
+                        // s = br.readLine();
+                        f.add(s);
+                    }
+                }
+                else if(!ignoreWordRegister){//filtrationCondition
+                    while((s=br.readLine()) !=null){
+                        // s = br.readLine();
+                        if(!s.contains(word)) f.add(s);
+                    }
+                }
+                else if(!filtrationCondition){//ignoreWordRegister
+                    while((s=br.readLine()) !=null){
+                        s = s.toLowerCase();
+                        f.add(s);
+                    }
+                }
+                else{ //ignoreWordRegister&filtrationcondition
+                    while ((s = br.readLine()) != null) {
+                        s = s.toLowerCase();
+                        word = word.toLowerCase();
+                        if(!s.contains(word)) f.add(s);
+                    }
                 }
             }
-            if(regex !=null && !ignoreWordRegister && !filtrationCondition) { //only regex found
-                while((s=br.readLine()) !=null){
-                  //  s = br.readLine();
-                    Pattern p = Pattern.compile(word);
-                    Matcher m = p.matcher(s);
-                    if (m.find()) f.add(s);
+            else{
+                if(!ignoreWordRegister  && !filtrationCondition){//regex
+                    while((s=br.readLine()) !=null){
+                        //  s = br.readLine();
+                        Pattern p = Pattern.compile(word);
+                        Matcher m = p.matcher(s);
+                        if (m.find()) f.add(s);
+                    }
+                }
+                else if(!ignoreWordRegister){//regex&filtrationCondition
+                    while((s=br.readLine()) !=null){
+                        //s = br.readLine();
+                        Pattern p = Pattern.compile(word);
+                        Matcher m = p.matcher(s);
+                        if(!m.find()) f.add(s);
+                    }
+                }
+                else if(!filtrationCondition){//regex&ignoreWordRegister
+                    while((s=br.readLine()) !=null){
+                        // s = br.readLine();
+                        Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
+                        Matcher m = p.matcher(s);
+                        if (m.find()) f.add(s);
+                    }
+                }
+                else{
+                    while((s=br.readLine()) !=null){
+                        s = s.toLowerCase();
+                        Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
+                        Matcher m = p.matcher(s);
+                        if(!m.find()) f.add(s);
+                    }
                 }
             }
-            if(regex !=null && (ignoreWordRegister) && !filtrationCondition) { //regex and ignoreWordRegister found
-                while((s=br.readLine()) !=null){
-                   // s = br.readLine();
-                    Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
-                    Matcher m = p.matcher(s);
-                    if (m.find()) f.add(s);
-                }
-            }
-            if(regex !=null && !ignoreWordRegister && (filtrationCondition)) { //regex and filtrationCondition found
-                while((s=br.readLine()) !=null){
-                    //s = br.readLine();
-                    Pattern p = Pattern.compile(word);
-                    Matcher m = p.matcher(s);
-                    if(!m.find()) f.add(s);
-                }
-            }
-            if(regex !=null && (ignoreWordRegister) && (filtrationCondition)) { //all found
-                while((s=br.readLine()) !=null){
-                    s = s.toLowerCase();
-                    Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
-                    Matcher m = p.matcher(s);
-                    if(!m.find()) f.add(s);
-                }
-            }
-            if(regex ==null && !ignoreWordRegister && (filtrationCondition)) { //only filtrationCondition found
-                while((s=br.readLine()) !=null){
-                   // s = br.readLine();
-                    if(!s.contains(word)) f.add(s);
-                }
-            }
-            if(regex ==null && (ignoreWordRegister) && !filtrationCondition) { //only ignoreWordRegister found
-                while((s=br.readLine()) !=null){
-                    s = s.toLowerCase();
-                    f.add(s);
-                }
-            }
-            if(regex ==null && (ignoreWordRegister) && (filtrationCondition)) { // ignoreWordRegister and filtrationCondition found
-                while ((s = br.readLine()) != null) {
-                    s = s.toLowerCase();
-                    word = word.toLowerCase();
-                    if(!s.contains(word)) f.add(s);
-                }
-                br.close();
-            }
+
+            br.close();
         }
+
         catch (IOException exc) {
             System.out.println ( "Ошибка ввода-вывода: "+ exc );
+
         }
+
         return f;
     }
 }
