@@ -26,13 +26,13 @@ public class Grep {
             String s;
             if(regex ==null && !ignoreWordRegister  && !filtrationCondition) { //nothing found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine();
+                   // s = br.readLine();
                     f.add(s);
                 }
             }
             if(regex !=null && !ignoreWordRegister && !filtrationCondition) { //only regex found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine();
+                  //  s = br.readLine();
                     Pattern p = Pattern.compile(word);
                     Matcher m = p.matcher(s);
                     if (m.find()) f.add(s);
@@ -40,7 +40,7 @@ public class Grep {
             }
             if(regex !=null && (ignoreWordRegister) && !filtrationCondition) { //regex and ignoreWordRegister found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine();
+                   // s = br.readLine();
                     Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(s);
                     if (m.find()) f.add(s);
@@ -48,7 +48,7 @@ public class Grep {
             }
             if(regex !=null && !ignoreWordRegister && (filtrationCondition)) { //regex and filtrationCondition found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine();
+                    //s = br.readLine();
                     Pattern p = Pattern.compile(word);
                     Matcher m = p.matcher(s);
                     if(!m.find()) f.add(s);
@@ -56,7 +56,7 @@ public class Grep {
             }
             if(regex !=null && (ignoreWordRegister) && (filtrationCondition)) { //all found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine().toLowerCase();
+                    s = s.toLowerCase();
                     Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
                     Matcher m = p.matcher(s);
                     if(!m.find()) f.add(s);
@@ -64,19 +64,19 @@ public class Grep {
             }
             if(regex ==null && !ignoreWordRegister && (filtrationCondition)) { //only filtrationCondition found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine();
+                   // s = br.readLine();
                     if(!s.contains(word)) f.add(s);
                 }
             }
             if(regex ==null && (ignoreWordRegister) && !filtrationCondition) { //only ignoreWordRegister found
                 while((s=br.readLine()) !=null){
-                    s = br.readLine().toLowerCase();
+                    s = s.toLowerCase();
                     f.add(s);
                 }
             }
             if(regex ==null && (ignoreWordRegister) && (filtrationCondition)) { // ignoreWordRegister and filtrationCondition found
                 while ((s = br.readLine()) != null) {
-                    s = br.readLine().toLowerCase();
+                    s = s.toLowerCase();
                     word = word.toLowerCase();
                     if(!s.contains(word)) f.add(s);
                 }
