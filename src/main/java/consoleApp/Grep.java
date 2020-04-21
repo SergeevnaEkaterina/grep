@@ -25,7 +25,7 @@ public class Grep {
         {
             String s;
             if(regex==null){
-                if(!ignoreWordRegister  && !filtrationCondition){//nothing found
+                if(!ignoreWordRegister  && !filtrationCondition){//nothing
                     while((s=br.readLine()) !=null){
                         // s = br.readLine();
                         f.add(s);
