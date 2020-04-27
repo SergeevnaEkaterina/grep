@@ -14,7 +14,7 @@ public class Run {
     @Option(name = "-i", usage = "Игнорирует регистр слов")
     private boolean ignoreWordRegister;
     @Option(name = "-r", usage = "Выводятся только строки, содержащие данное регулярное выражение")
-    private Pattern regex;
+    private boolean regex;
     @Argument(required = true, metaVar = "InputName",index = 1, usage = "Входной файл")
     private String inputName;
     @Argument(required = true, metaVar = "Word", usage = "Выводятся только строки, содержащие данное слово")

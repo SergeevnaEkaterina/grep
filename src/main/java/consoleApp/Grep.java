@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 public class Grep {
     private final boolean filtrationCondition;
     private final boolean ignoreWordRegister;
-    private Pattern regex;
+    private boolean regex;
     private String word;
     private final String inputName;
-    public Grep (boolean filtrationCondition,boolean ignoreWordRegister,Pattern regex,String word,String inputName) {
+    public Grep (boolean filtrationCondition,boolean ignoreWordRegister,boolean regex,String word,String inputName) {
         this.filtrationCondition = filtrationCondition ;
         this.ignoreWordRegister = ignoreWordRegister ;
         this.regex = regex;
@@ -24,7 +24,7 @@ public class Grep {
         try(BufferedReader br = new BufferedReader(new FileReader(inputName)))
         {
             String s;
-            if(regex==null){
+            if(!regex){
                 if(!ignoreWordRegister  && !filtrationCondition){//nothing
                     while((s=br.readLine()) !=null){
                         // s = br.readLine();
@@ -43,7 +43,7 @@ public class Grep {
                         f.add(s);
                     }
                 }
-                else{ //ignoreWordRegister&filtrationcondition
+                else{ //ignoreWordRegister&filtrationCondition
                     while ((s = br.readLine()) != null) {
                         s = s.toLowerCase();
                         word = word.toLowerCase();
@@ -70,18 +70,18 @@ public class Grep {
                 }
                 else if(!filtrationCondition){//regex&ignoreWordRegister
                     while((s=br.readLine()) !=null){
-                         s = s.toLowerCase();
-                        Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
+                         //s = s.toLowerCase();
+                        Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
                         Matcher m = p.matcher(s);
-                        if (m.find()) f.add(s);
+                        if (m.find()) f.add(s.toLowerCase());
                     }
                 }
                 else{
                     while((s=br.readLine()) !=null){//all
-                        s = s.toLowerCase();
-                        Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE & Pattern.CASE_INSENSITIVE);
+                        //s = s.toLowerCase();
+                        Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
                         Matcher m = p.matcher(s);
-                        if(!m.find()) f.add(s);
+                        if(!m.find()) f.add(s.toLowerCase());
                     }
                 }
             }
@@ -89,10 +89,7 @@ public class Grep {
             br.close();
         }
 
-        catch (IOException exc) {
-            System.out.println ( "Ошибка ввода-вывода: "+ exc );
 
-        }
 
         return f;
     }
