@@ -1,3 +1,4 @@
+package consoleApp;
 import consoleApp.Grep;
 //package consoleApp;
 import org.junit.Test;
@@ -10,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class GrepTest {
     @Test
     public void logics1() throws IOException {//nothing
-        Grep gr = new Grep(false,false,false,"стать", "test\\textForTesting.txt");
+        Grep gr = new Grep(false,false,false,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("Умом Россию не понять");
         test.add("Аршином общим не измерить");
@@ -20,7 +21,7 @@ public class GrepTest {
     }
     @Test
     public void logics2() throws IOException {//filtrationCondition
-        Grep gr = new Grep(true,false,false,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(true,false,false,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("Умом Россию не понять");
         test.add("Аршином общим не измерить");
@@ -29,7 +30,7 @@ public class GrepTest {
     }
     @Test
     public void logics3() throws IOException {//ignoreWordRegister
-        Grep gr = new Grep(false,true,false,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(false,true,false,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("умом россию не понять");
         test.add("аршином общим не измерить");
@@ -40,14 +41,14 @@ public class GrepTest {
     @Test
     public void logics4() throws IOException {//regex
         Pattern p = Pattern.compile("стать");
-        Grep gr = new Grep(false,false,true,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(false,false,true,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("У ней особенная стать");
         assertEquals(test, gr.logics());
     }
     @Test
     public void logics5() throws IOException {//filtrationCondition&ignoreWordRegister
-        Grep gr = new Grep(true,true,false,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(true,true,false,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("умом россию не понять");
         test.add("аршином общим не измерить");
@@ -56,7 +57,7 @@ public class GrepTest {
     }
     @Test
     public void logics6() throws IOException {//filtrationCondition&regex
-        Grep gr = new Grep(true,false,true,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(true,false,true,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("Умом Россию не понять");
         test.add("Аршином общим не измерить");
@@ -65,14 +66,14 @@ public class GrepTest {
     }
     @Test
     public void logics7() throws IOException {//ignoreWordRegister&regex
-        Grep gr = new Grep(false,true,true,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(false,true,true,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("у ней особенная стать");
         assertEquals(test, gr.logics());
     }
     @Test
     public void logics8() throws IOException {//all
-        Grep gr = new Grep(true,true,true,"стать", "C:\\Users\\220\\IdeaProjects\\grep\\src\\test\\textForTesting");
+        Grep gr = new Grep(true,true,true,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("умом россию не понять");
         test.add("аршином общим не измерить");
