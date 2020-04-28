@@ -1,12 +1,12 @@
-package consoleApp;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public class Grep {
+ package consoleApp;
+ import java.io.BufferedReader;
+ import java.io.FileReader;
+ import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.List;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+ public class Grep {
     private final boolean filtrationCondition;
     private final boolean ignoreWordRegister;
     private boolean regex;
@@ -28,20 +28,19 @@ public class Grep {
                 if (!ignoreWordRegister) {
                     if (!filtrationCondition) {//nothing
                         while ((s = br.readLine()) != null) {
-                            // s = br.readLine();
-                            f.add(s);
+                            if (s.contains(word)) f.add(s);
+
                         }
                     } else {//filtrationCondition
                         while ((s = br.readLine()) != null) {
-                            // s = br.readLine();
                             if (!s.contains(word)) f.add(s);
                         }
                     }
                 } else {
                     if (!filtrationCondition) {//ignoreWordRegister
                         while ((s = br.readLine()) != null) {
-                            s = s.toLowerCase();
-                            f.add(s);
+                            if (s.contains(word)) f.add(s.toLowerCase());
+
                         }
                     } else {//ignoreWordRegister&filtrationCondition
                         while ((s = br.readLine()) != null) {
@@ -56,7 +55,6 @@ public class Grep {
                 if(!ignoreWordRegister){
                     if (!filtrationCondition){//regex
                         while((s=br.readLine()) !=null){
-                            //  s = br.readLine();
                             Pattern p = Pattern.compile(word);
                             Matcher m = p.matcher(s);
                             if (m.find()) f.add(s);
@@ -64,7 +62,6 @@ public class Grep {
                     }
                     else{//regex&filtrationCondition
                         while((s=br.readLine()) !=null){
-                            //s = br.readLine();
                             Pattern p = Pattern.compile(word);
                             Matcher m = p.matcher(s);
                             if(!m.find()) f.add(s);
@@ -74,7 +71,6 @@ public class Grep {
                 else{
                     if (!filtrationCondition){//regex&ignoreWordRegister
                         while((s=br.readLine()) !=null){
-                            //s = s.toLowerCase();
                             Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
                             Matcher m = p.matcher(s);
                             if (m.find()) f.add(s.toLowerCase());
@@ -82,7 +78,6 @@ public class Grep {
                     }
                     else{//all
                         while((s=br.readLine()) !=null){
-                            //s = s.toLowerCase();
                             Pattern p = Pattern.compile(word, Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
                             Matcher m = p.matcher(s);
                             if(!m.find()) f.add(s.toLowerCase());

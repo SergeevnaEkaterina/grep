@@ -13,10 +13,7 @@ public class GrepTest {
     public void logics1() throws IOException {//nothing
         Grep gr = new Grep(false,false,false,"стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
-        test.add("Умом Россию не понять");
-        test.add("Аршином общим не измерить");
         test.add("У ней особенная стать");
-        test.add("В Россию можно только верить");
         assertEquals(test, gr.logics());
     }
     @Test
@@ -30,12 +27,9 @@ public class GrepTest {
     }
     @Test
     public void logics3() throws IOException {//ignoreWordRegister
-        Grep gr = new Grep(false,true,false,"стать", "src\\test\\textForTesting");
+        Grep gr = new Grep(false, true, false, "стать", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
-        test.add("умом россию не понять");
-        test.add("аршином общим не измерить");
         test.add("у ней особенная стать");
-        test.add("в россию можно только верить");
         assertEquals(test, gr.logics());
     }
     @Test
