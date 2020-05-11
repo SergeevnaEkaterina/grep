@@ -38,7 +38,7 @@
          return b;
      }
      public List<String> logics() throws IOException {
-        ArrayList<String> f = new ArrayList<>();
+        List<String> f = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(inputName))) {
             String s;
             while ((s = br.readLine()) != null) {
