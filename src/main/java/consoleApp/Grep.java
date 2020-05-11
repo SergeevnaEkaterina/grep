@@ -44,7 +44,6 @@
             while ((s = br.readLine()) != null) {
                 if (flagsProcessing(s)) f.add(s);
             }
-            br.close();
             return f;
         }
     }
