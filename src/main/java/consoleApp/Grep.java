@@ -7,8 +7,8 @@
  import java.util.regex.Matcher;
  import java.util.regex.Pattern;
  public class Grep {
-    private final boolean filtrationCondition;
-    private final boolean ignoreWordRegister;
+    private boolean filtrationCondition;
+    private boolean ignoreWordRegister;
     private boolean regex;
     private String word;
     private final String inputName;
