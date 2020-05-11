@@ -86,8 +86,8 @@ public class GrepTest {
         assertEquals(test, gr.logics());
     }
     @Test
-    public void logics70() throws IOException {//ignoreWordRegister&regex
-        Grep gr = new Grep(false,true,true,"\\S", "src\\test\\textForTesting");
+    public void logics700() throws IOException {//ignoreWordRegister&regex
+        Grep gr = new Grep(false,true,true,"\\D", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
         test.add("Отец мой Андрей Петрович Гринев в молодости своей служил при");
         test.add("графе Минихе и вышел в отставку премьер-майором в 17.. году. С тех пор");
