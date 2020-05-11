@@ -21,8 +21,8 @@ public class Grep {
         this.inputName = inputName;
     }
     boolean flagsProcessing(String a){
-        boolean b = false;
-        String filt = "";
+        boolean b;
+        String filt;
         Pattern p;
         if (! regex){
             filt = Pattern.quote(word);
@@ -31,7 +31,7 @@ public class Grep {
         if (ignoreWordRegister) {
             p = Pattern.compile(filt, Pattern.UNICODE_CASE| Pattern.CASE_INSENSITIVE);
         }
-        else p = Pattern.compile(word);
+        else p = Pattern.compile(filt);
         Matcher m = p.matcher(a);
         b = m.find();
         if (filtrationCondition) {
