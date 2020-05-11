@@ -96,7 +96,7 @@ public class GrepTest {
         test.add("человек детей. Все мои братья и сестры умерли во младенчестве.");
         assertEquals(test, gr.logics());
     }
-    
+
     @Test
     public void logics8() throws IOException {//all
         Grep gr = new Grep(true,true,true,"[ю-я]", "src\\test\\textForTesting");

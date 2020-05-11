@@ -24,14 +24,14 @@ public class Grep {
         boolean b = false;
         String filt = "";
         Pattern p;
-        if (regex){
-            filt = word;
+        if (! regex){
+            filt = Pattern.quote(word);
         }
-        else filt=Pattern.quote(word);
+        else filt = word;
         if (ignoreWordRegister) {
             p = Pattern.compile(filt, Pattern.UNICODE_CASE| Pattern.CASE_INSENSITIVE);
         }
-        else p = Pattern.compile(filt);
+        else p = Pattern.compile(word);
         Matcher m = p.matcher(a);
         b = m.find();
         if (filtrationCondition) {
