@@ -86,6 +86,17 @@ public class GrepTest {
         assertEquals(test, gr.logics());
     }
     @Test
+    public void logics70() throws IOException {//ignoreWordRegister&regex
+        Grep gr = new Grep(false,true,true,"\\S", "src\\test\\textForTesting");
+        ArrayList<String> test = new ArrayList<String>();
+        test.add("Отец мой Андрей Петрович Гринев в молодости своей служил при");
+        test.add("графе Минихе и вышел в отставку премьер-майором в 17.. году. С тех пор");
+        test.add("жил он в своей Симбирской деревне, где и женился на девице Авдотье");
+        test.add("Васильевне Ю., дочери бедного тамошнего дворянина. Нас было девять");
+        test.add("человек детей. Все мои братья и сестры умерли во младенчестве.");
+        assertEquals(test, gr.logics());
+    }
+    @Test
     public void logics8() throws IOException {//all
         Grep gr = new Grep(true,true,true,"[ю-я]", "src\\test\\textForTesting");
         ArrayList<String> test = new ArrayList<String>();
